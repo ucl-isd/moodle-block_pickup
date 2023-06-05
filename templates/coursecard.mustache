@@ -1,0 +1,33 @@
+{{! Coursecard. }}
+<div class="dashboard-card h-100 bg-white p-3 position-relative">
+
+    <div class="d-flex flex-column h-100">
+
+        {{! Image. }}
+        <div class="bg-cover transition mb-2 bg-light"
+            style='background-image: url("{{{courseimage}}}"); height: 140px;'>
+        </div>
+
+        {{! Name & Catagory. }}
+        <div class="dashboard-card-details">
+            <a href="{{viewurl}}" class="stretched-link font-weight-bold line-clamp-3">{{fullname}}</a>
+            <div><small>{{coursecategory}}</small></div>
+        </div>
+
+        <div class="dashboard-card-meta mt-auto">
+
+            {{! Progress. }}
+            <div class="{{^progress}} invisible {{/progress}}">
+                <small>Progress: {{progress}}%</small>
+                <div class="progress ">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    aria-valuenow="{{progress}}"
+                    style="width: {{progress}}%"
+                    aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
