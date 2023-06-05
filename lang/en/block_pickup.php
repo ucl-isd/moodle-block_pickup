@@ -22,9 +22,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Pick up where you felt off';
-$string['alerts:addinstance'] = 'Add pick up where you felt off block';
-$string['alerts:myaddinstance'] = 'Add pick up where you felt off block';
+$string['pluginname'] = 'Pick up where you left off';
+$string['alerts:addinstance'] = 'Add pick up where you left off block';
+$string['alerts:myaddinstance'] = 'Add pick up where you left off block';
 
 $string['blocktitle'] = 'Block title';
 $string['configurealerts'] = "Edit global alert posts";
