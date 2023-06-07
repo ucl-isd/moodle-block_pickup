@@ -67,11 +67,6 @@ class block_pickup extends block_base {
         $template->courses = $this->fetch_recent_courses();
         $itemcount = count($template->courses);
 
-        // Hide the block when no content.
-        if (!$itemcount) {
-            // return $this->content;
-        }
-
         $template->mods = $this->fetch_recent_mods();
 
         // Render from template.
@@ -101,22 +96,15 @@ class block_pickup extends block_base {
         $params = array(
             'userid' => $USER->id,
         );
-        $mod_records = $DB->get_records_sql($sql, $params);
+        $modrecords = $DB->get_records_sql($sql, $params);
 
-        // Template data for mustache.
+        /* Template data for mustache. */
         $template = new stdClass();
 
-        foreach ($mod_records as $cm) {
+        foreach ($modrecords as $cm) {
             $contextmodule = context_module::instance($cm->cmid);
             $modinfo = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid);
             $iconurl = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid)->get_icon_url()->out(false);
-            /*
-             echo "<hr><h1>Mod stuff: </h1>";
-            // var_dump($modinfo);
-            var_dump($modinfo->name);
-            echo "<hr>";
-            */
-
 
             /* Template per mod. */
             $mod = new stdClass();
@@ -140,10 +128,10 @@ class block_pickup extends block_base {
      */
     public function fetch_recent_courses() : array {
         global $DB, $USER, $CFG;
+
         /* TODO
         * logged in as, so change user id.
         */
-
 
         /* DB query. */
         $sql = "SELECT c.*, cc.name
@@ -157,19 +145,19 @@ class block_pickup extends block_base {
         $params = array(
             'userid' => $USER->id,
         );
-        $course_records = $DB->get_records_sql($sql, $params);
+        $courserecords = $DB->get_records_sql($sql, $params);
 
-        // Template data for mustache.
+        /* Template data for mustache. */
         $template = new stdClass();
 
-        foreach ($course_records as $cr) {
+        foreach ($courserecords as $cr) {
             /* Template per course. */
             $course = new stdClass();
             $course->fullname = $cr->fullname;
             $course->viewurl = new moodle_url('/course/view.php', array('id' => $cr->id));
             $course->coursecategory = $cr->name;
 
-            // Progress.
+            /* Progress. */
             if ($cr->enablecompletion) {
                 $percentage = \core_completion\progress::get_course_progress_percentage($cr, $USER->id);
                 if (!is_null($percentage)) {
@@ -194,8 +182,6 @@ class block_pickup extends block_base {
         }
 
         // TODO - empty array if no data.
-
-        // var_dump($template);
 
         return  $template->courses;
     }
