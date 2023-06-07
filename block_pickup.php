@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+use core_completion\progress;
+
 /**
  * Block definition class for the block_pickup plugin.
  *
@@ -21,9 +23,6 @@
  * @copyright 2023 Stuart Lamour
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-use core_completion\progress;
-
 class block_pickup extends block_base {
 
     /**
