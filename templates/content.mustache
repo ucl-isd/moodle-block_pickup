@@ -1,4 +1,4 @@
-  {{!
+{{!
     This file is part of Moodle - http://moodle.org/
     Moodle is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,30 +16,39 @@
     @template blocks_pickup/content
     Example context (json):
     {
-        "nav": 1,
         "courses": [
          {
-            "title": "This is the alert title",
-            "description": "This is the news description",
-            "active": 1
+            "courseimage": "image url",
+            "viewurl": "https://moodle.com/",
+            "fullname": "The fullname of the course",
+            "coursecategory": "The category",
+            "progress": "50"
          },
          {
-            "title": "This is the alert title",
-            "description": "This is the news description",
-            "active": 0
+            "courseimage": "image url",
+            "viewurl": "https://moodle.com/",
+            "fullname": "The fullname of the course",
+            "coursecategory": "The category",
+            "progress": "50"
          }
         ],
         "mods": [
          {
-            "title": "This is the alert title",
-            "description": "This is the news description",
-            "active": 1
+            "purpose": "content",
+            "icon": "monologo url",
+            "url": "https://moodle.com/",
+            "type": "file",
+            "name": "The fullname of the activity",
+            "coursename": "The name of the course"
          },
          {
-            "title": "This is the alert title",
-            "description": "This is the news description",
-            "active": 0
-         }
+            "purpose": "content",
+            "icon": "monologo url",
+            "url": "https://moodle.com/",
+            "type": "file",
+            "name": "The fullname of the activity",
+            "coursename": "The name of the course"
+          }
         ]
 
     }
@@ -48,6 +57,7 @@
   <div class="container">
     <div class="row">
 
+      {{! Header and link. }}
       <div class="col-lg-3">
         <div class="p-3">
           <h3>Pick up where you left off</h3>
@@ -77,54 +87,42 @@
         </div>
       </div>
 
+      {{! Tab content. }}
       <div class="col-lg-9">
 
         <div class="tab-content" id="v-pills-tabContent">
 
-          {{! Courses tab. }}
+          {{! Courses pane. }}
           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 
             <div class="row">
             {{#courses}}
-              <div class="col-lg-4 my-3">
+              <div class="col-md-6 col-lg-4 my-3">
                 {{> block_pickup/coursecard }}
               </div>
             {{/courses}}
-            </div>
 
-            <!-- All courses link. -->
-            <div class="col-12 text-right py-2">
-              <a href="{{{ config.wwwroot }}}/my/courses.php"><i class="fa fa-arrow-right mr-2" aria-hidden="true"></i> View all your courses</a>
+              <!-- All courses link. -->
+              <div class="col-md-6 col-lg-12 text-center text-lg-right py-2 my-auto">
+                <a href="{{{ config.wwwroot }}}/my/courses.php"><i class="fa fa-arrow-right mr-2" aria-hidden="true"></i> View all your courses</a>
+              </div>
             </div>
 
           </div>
 
-          {{! Activities tab. }}
+          {{! Activities pane. }}
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 
             <div class="row">
               {{#mods}}
-              <div class="col-lg-6 mb-3">
-
-                  <div class="media bg-white p-3">
-
-                    <div class="activityiconcontainer {{purpose}} mr-2">
-                        <img class="icon activityicon" src="{{icon}}" alt="">
-                    </div>
-
-                    <div class="media-body">
-                        <div class="small text-capitalize">{{type}}</div>
-                        <div class="activityname">
-                          <a href="{{url}}" class="font-weight-bold">{{name}}</a>
-                        </div>
-                        <div class="small">{{coursename}}</div>
-                    </div>
-                  </div>
+              <div class="col-md-6 mb-3">
+                {{> block_pickup/activity }}
               </div>
               {{/mods}}
             </div>
 
           </div>
+
     </div>
   </div>
 </div>
@@ -133,7 +131,6 @@
 <style>
 .block_pickup .card-body,
 .block_pickup .card-text {
-  /* padding: 0 !important; */
   margin-top: 0 !important;
 }
 .block_pickup .card-title {
