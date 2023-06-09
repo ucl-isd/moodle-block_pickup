@@ -123,7 +123,6 @@ class block_pickup extends block_base {
         }
 
         return $template->mods;
-
     }
 
     /**
@@ -185,8 +184,6 @@ class block_pickup extends block_base {
 
             $template->courses[] = $course;
         }
-
-        // TODO - empty array if no data.
 
         return  $template->courses;
     }
