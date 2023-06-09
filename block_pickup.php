@@ -31,7 +31,6 @@ class block_pickup extends block_base {
      * @return void
      */
     public function init() {
-        global $USER;
         $this->title = get_string('pluginname', 'block_pickup');
     }
 
@@ -66,13 +65,16 @@ class block_pickup extends block_base {
 
         $template = new stdClass();
         $template->courses = $this->fetch_recent_courses();
-        $itemcount = count($template->courses);
+        $coursecount = count($template->courses);
 
         $template->mods = $this->fetch_recent_mods();
-        $itemcount = count($template->mods);
+        $modcount = count($template->mods);
 
-        // Render from template.
-        $this->content->text = $OUTPUT->render_from_template('block_pickup/content', $template);
+        /* Only output if we have content. */
+        if ($coursecount || $modcount) {
+            /* Render from template. */
+            $this->content->text = $OUTPUT->render_from_template('block_pickup/content', $template);
+        }
 
         return $this->content;
     }
@@ -84,9 +86,6 @@ class block_pickup extends block_base {
      */
     public function fetch_recent_mods() : array {
         global $DB, $USER, $CFG;
-        /* TODO
-        * logged in as, so change user id.
-        */
 
         /* DB query. */
         $sql = "SELECT *
@@ -99,6 +98,10 @@ class block_pickup extends block_base {
             'userid' => $USER->id,
         );
         $modrecords = $DB->get_records_sql($sql, $params);
+
+        if (!count($modrecords)) {
+            return array();
+        }
 
         /* Template data for mustache. */
         $template = new stdClass();
@@ -131,10 +134,6 @@ class block_pickup extends block_base {
     public function fetch_recent_courses() : array {
         global $DB, $USER, $CFG;
 
-        /* TODO
-        * logged in as, so change user id.
-        */
-
         /* DB query. */
         $sql = "SELECT c.*, cc.name
                   FROM {user_lastaccess} ula
@@ -148,6 +147,10 @@ class block_pickup extends block_base {
             'userid' => $USER->id,
         );
         $courserecords = $DB->get_records_sql($sql, $params);
+
+        if (!count($courserecords)) {
+            return array();
+        }
 
         /* Template data for mustache. */
         $template = new stdClass();
