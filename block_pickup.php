@@ -43,7 +43,9 @@ class block_pickup extends block_base {
         if (isset($this->config->title)) {
             $this->title = $this->title = format_string($this->config->title, true, ['context' => $this->context]);
         } else {
-            $this->title = get_string('pluginname', 'block_pickup');
+            /* Don't show the block title, unless one is set. */
+            /* We output the title as part of the block. */
+            $this->title = "";
         }
     }
 
