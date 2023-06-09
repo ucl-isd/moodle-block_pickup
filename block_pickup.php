@@ -69,6 +69,7 @@ class block_pickup extends block_base {
         $itemcount = count($template->courses);
 
         $template->mods = $this->fetch_recent_mods();
+        $itemcount = count($template->mods);
 
         // Render from template.
         $this->content->text = $OUTPUT->render_from_template('block_pickup/content', $template);
