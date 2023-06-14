@@ -53,13 +53,13 @@
 
     }
 }}
-<div id="block-pickup-content" class="py-3 bg-light animate-enter">
+<div id="block-pickup-content" class="animate-enter">
   <div class="container">
     <div class="row">
 
       {{! Header and link. }}
       <div class="col-lg-3">
-        <div class="p-3">
+        <div class="py-3">
           <h3>{{#str}} pluginname, block_pickup {{/str}} </h3>
 
           <div class="nav flex-column" id="block-pickup-tab" role="tablist" aria-orientation="vertical">
@@ -71,7 +71,8 @@
                 role="tab"
                 aria-controls="block-pickup-courses"
                 aria-selected="true">
-                  {{#str}} courses {{/str}}
+                  <i class="block-pickup-active-arrow transition fa fa-long-arrow-right mr-2" aria-hidden="true"></i>{{#str}} courses {{/str}}
+
                 </a>
             <a class="nav-link transition p-0 py-1"
                 id="block-pickup-activites-tab"
@@ -80,7 +81,7 @@
                 role="tab"
                 aria-controls="block-pickup-activites"
                 aria-selected="false">
-                  {{#str}} activities {{/str}}
+                  <i class="block-pickup-active-arrow transition fa fa-long-arrow-right mr-2" aria-hidden="true"></i>{{#str}} activities {{/str}}
                 </a>
           </div>
 
