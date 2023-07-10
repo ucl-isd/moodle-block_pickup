@@ -27,4 +27,6 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version   = 2023060100;        // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2019051100;        // Requires this Moodle version.
 $plugin->component = 'block_pickup';    // Full name of the plugin (used for diagnostics).
-
+$plugin->dependencies = [
+    'block_recentlyaccesseditems' => 2023042400,
+];
