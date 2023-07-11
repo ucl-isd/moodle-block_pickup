@@ -92,7 +92,7 @@ class block_pickup extends block_base {
                   FROM {block_recentlyaccesseditems} ra
                   JOIN {course_modules} c ON c.id = ra.cmid
                  WHERE ra.userid = :userid
-              ORDER BY timeaccess DESC
+              ORDER BY ra.timeaccess DESC
                  LIMIT 4";
 
         $params = array(
@@ -110,7 +110,7 @@ class block_pickup extends block_base {
         foreach ($modrecords as $cm) {
             $contextmodule = context_module::instance($cm->cmid);
             $modinfo = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid);
-            $iconurl = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid)->get_icon_url()->out(false);
+            $iconurl = $modinfo->get_icon_url()->out(false);
 
             /* Template per mod. */
             $mod = new stdClass();

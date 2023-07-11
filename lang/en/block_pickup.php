@@ -23,8 +23,8 @@
  */
 
 $string['pluginname'] = 'Pick up where you left off';
-$string['alerts:addinstance'] = 'Add pick up where you left off block';
-$string['alerts:myaddinstance'] = 'Add pick up where you left off block';
+$string['pickup:addinstance'] = 'Add pick up where you left off block';
+$string['pickup:myaddinstance'] = 'Add pick up where you left off block';
 
 $string['blocktitle'] = 'Block title';
 $string['configurealerts'] = "Edit global alert posts";
