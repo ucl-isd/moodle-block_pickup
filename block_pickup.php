@@ -88,10 +88,11 @@ class block_pickup extends block_base {
         global $DB, $USER, $CFG;
 
         /* DB query. */
-        $sql = "SELECT *
-                  FROM {block_recentlyaccesseditems}
-                 WHERE userid = :userid
-              ORDER BY timeaccess DESC
+        $sql = "SELECT ra.cmid, ra.courseid
+                  FROM {block_recentlyaccesseditems} ra
+                  JOIN {course_modules} c ON c.id = ra.cmid
+                 WHERE ra.userid = :userid
+              ORDER BY ra.timeaccess DESC
                  LIMIT 4";
 
         $params = array(
