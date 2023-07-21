@@ -28,11 +28,4 @@ $string['pickup:myaddinstance'] = 'Add pick up where you left off block';
 $string['privacy:metadata'] = 'Pick up where you left off does not store any personal data.';
 
 $string['blocktitle'] = 'Block title';
-$string['configurealerts'] = "Edit global alert posts";
-$string['title'] = 'Title';
-$string['alertsitem'] = 'Alerts post';
-$string['date'] = 'Post date';
-$string['date_help'] = 'Post date sets the order of display, not the date it becomes visible.';
-$string['description'] = 'Description';
-$string['description_help'] = 'Short text, no more that 140 characters.';
 
