@@ -25,7 +25,6 @@
 $string['pluginname'] = 'Pick up where you left off';
 $string['pickup:addinstance'] = 'Add pick up where you left off block';
 $string['pickup:myaddinstance'] = 'Add pick up where you left off block';
-$string['privacy:metadata'] = 'Pick up where you left off does not store any personal data.';
 
 $string['blocktitle'] = 'Block title';
 $string['configurealerts'] = "Edit global alert posts";
