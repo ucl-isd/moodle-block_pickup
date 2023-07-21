@@ -88,7 +88,7 @@ class block_pickup extends block_base {
         global $DB, $USER, $CFG;
 
         /* DB query. */
-        $sql = "SELECT *
+        $sql = "SELECT ra.cmid, ra.courseid
                   FROM {block_recentlyaccesseditems} ra
                   JOIN {course_modules} c ON c.id = ra.cmid
                  WHERE ra.userid = :userid
@@ -110,7 +110,7 @@ class block_pickup extends block_base {
         foreach ($modrecords as $cm) {
             $contextmodule = context_module::instance($cm->cmid);
             $modinfo = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid);
-            $iconurl = $modinfo->get_icon_url()->out(false);
+            $iconurl = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid)->get_icon_url()->out(false);
 
             /* Template per mod. */
             $mod = new stdClass();
@@ -221,4 +221,3 @@ class block_pickup extends block_base {
         return false;
     }
 }
-
