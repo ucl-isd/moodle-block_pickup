@@ -28,4 +28,5 @@ $string['pickup:myaddinstance'] = 'Add pick up where you left off block';
 $string['privacy:metadata'] = 'Pick up where you left off does not store any personal data.';
 
 $string['blocktitle'] = 'Block title';
+$string['viewmycourses'] = 'View all your courses';
 
