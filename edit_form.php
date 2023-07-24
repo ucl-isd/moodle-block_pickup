@@ -38,6 +38,4 @@ class block_pickup_edit_form extends block_edit_form {
         $mform->setType('config_title', PARAM_TEXT);
 
     }
-
 }
-

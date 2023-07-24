@@ -14,7 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+use block_recentlyaccesseditems\helper;
 use core_completion\progress;
+use core_course\external\course_summary_exporter;
 
 /**
  * Block definition class for the block_pickup plugin.
@@ -39,8 +41,8 @@ class block_pickup extends block_base {
      *
      */
     public function specialization() {
-        if (isset($this->config->title)) {
-            $this->title = $this->title = format_string($this->config->title, true, ['context' => $this->context]);
+        if (!empty($this->config->title)) {
+            $this->title = format_string($this->config->title, true, ['context' => $this->context]);
         } else {
             /* Don't show the block title, unless one is set. */
             /* We output the title as part of the block. */
@@ -85,20 +87,8 @@ class block_pickup extends block_base {
      * @return array mods.
      */
     public function fetch_recent_mods() : array {
-        global $DB, $USER, $CFG;
-
-        /* DB query. */
-        $sql = "SELECT ra.cmid, ra.courseid
-                  FROM {block_recentlyaccesseditems} ra
-                  JOIN {course_modules} c ON c.id = ra.cmid
-                 WHERE ra.userid = :userid
-              ORDER BY ra.timeaccess DESC
-                 LIMIT 4";
-
-        $params = array(
-            'userid' => $USER->id,
-        );
-        $modrecords = $DB->get_records_sql($sql, $params);
+        /* Get the recent items using recentlyaccesseditems block's helper class */
+        $modrecords = helper::get_recent_items(4);
 
         if (!count($modrecords)) {
             return array();
@@ -108,7 +98,6 @@ class block_pickup extends block_base {
         $template = new stdClass();
 
         foreach ($modrecords as $cm) {
-            $contextmodule = context_module::instance($cm->cmid);
             $modinfo = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid);
             $iconurl = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid)->get_icon_url()->out(false);
 
@@ -132,21 +121,10 @@ class block_pickup extends block_base {
      * @return array courses.
      */
     public function fetch_recent_courses() : array {
-        global $DB, $USER, $CFG;
+        global $USER;
 
-        /* DB query. */
-        $sql = "SELECT c.*, cc.name
-                  FROM {user_lastaccess} ula
-                  JOIN {course} c ON c.id = ula.courseid
-                  JOIN {course_categories} cc ON cc.id = c.category
-                 WHERE ula.userid = :userid
-              ORDER BY ula.timeaccess DESC
-                 LIMIT 3";
-
-        $params = array(
-            'userid' => $USER->id,
-        );
-        $courserecords = $DB->get_records_sql($sql, $params);
+        // Get recent courses.
+        $courserecords = course_get_recent_courses($USER->id, 3);
 
         if (!count($courserecords)) {
             return array();
@@ -160,29 +138,16 @@ class block_pickup extends block_base {
             $course = new stdClass();
             $course->fullname = $cr->fullname;
             $course->viewurl = new moodle_url('/course/view.php', array('id' => $cr->id));
-            $course->coursecategory = $cr->name;
+            $course->coursecategory = core_course_category::get($cr->category)->get_formatted_name();
 
             /* Progress. */
-            if ($cr->enablecompletion) {
-                $percentage = \core_completion\progress::get_course_progress_percentage($cr, $USER->id);
-                if (!is_null($percentage)) {
-                    $percentage = floor($percentage);
-                    $course->progress = $percentage;
-
-                }
+            if ($percentage = progress::get_course_progress_percentage($cr, $USER->id)) {
+                $percentage = floor($percentage);
+                $course->progress = $percentage;
             }
-
-            /* Course list item. */
-            $cle = new \core_course_list_element($cr);
 
             /* Course image. */
-            foreach ($cle->get_course_overviewfiles() as $file) {
-                $course->courseimage = file_encode_url("$CFG->wwwroot/pluginfile.php",
-                '/' . $file->get_contextid() .
-                '/' . $file->get_component() .
-                '/' . $file->get_filearea() . $file->get_filepath() . $file->get_filename());
-            }
-
+            $course->courseimage = course_summary_exporter::get_course_image($cr);
             $template->courses[] = $course;
         }
 
@@ -212,6 +177,7 @@ class block_pickup extends block_base {
     public function instance_allow_multiple() : bool {
         return false;
     }
+
     /**
      * Defines if the has config.
      *
