@@ -41,13 +41,9 @@ class block_pickup extends block_base {
      *
      */
     public function specialization() {
-        if (!empty($this->config->title)) {
-            $this->title = format_string($this->config->title, true, ['context' => $this->context]);
-        } else {
-            /* Don't show the block title, unless one is set. */
-            /* We output the title as part of the block. */
-            $this->title = "";
-        }
+        /* Don't show the block title. */
+        /* The title is output as part of the block. */
+        $this->title = "";
     }
 
     /**
@@ -99,7 +95,7 @@ class block_pickup extends block_base {
 
         foreach ($modrecords as $cm) {
             $modinfo = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid);
-            $iconurl = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid)->get_icon_url()->out(false);
+            $iconurl = $modinfo->get_icon_url()->out(false);
 
             /* Template per mod. */
             $mod = new stdClass();

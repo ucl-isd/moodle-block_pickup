@@ -71,8 +71,7 @@
                 role="tab"
                 aria-controls="block-pickup-courses"
                 aria-selected="true">
-                  <i class="block-pickup-active-arrow transition fa fa-arrow-right-long mr-2" aria-hidden="true"></i>
-                  {{#str}} courses {{/str}}
+                  <i class="block-pickup-active-arrow transition fa fa-arrow-right-long mr-2" aria-hidden="true"></i>{{#str}} courses {{/str}}
 
                 </a>
             <a class="nav-link transition p-0 py-1"
@@ -106,7 +105,7 @@
 
               <!-- All courses link. -->
               <div class="col-md-6 col-lg-12 text-center text-lg-right py-2 my-auto">
-                <a href="{{{ config.wwwroot }}}/my/courses.php"><i class="fa fa-arrow-right mr-2" aria-hidden="true"></i> View all your courses</a>
+                <a href="{{{ config.wwwroot }}}/my/courses.php" class="mb-3"><i class="fa fa-arrow-right mr-2" aria-hidden="true"></i> {{#str}} viewmycourses, block_pickup {{/str}}</a>
               </div>
             </div>
 
@@ -124,7 +123,6 @@
             </div>
 
           </div>
-
 
         </div>
       </div>
