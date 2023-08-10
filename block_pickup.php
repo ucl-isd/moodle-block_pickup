@@ -95,13 +95,13 @@ class block_pickup extends block_base {
 
         foreach ($modrecords as $cm) {
             $modinfo = get_fast_modinfo($cm->courseid)->get_cm($cm->cmid);
-            $iconurl = $modinfo->get_icon_url()->out(false);
 
             /* Template per mod. */
             $mod = new stdClass();
             $mod->name = $modinfo->name;
             $mod->type = $modinfo->modname;
-            $mod->icon = $iconurl;
+            $mod->icon = $modinfo->get_icon_url()->out(false);
+            $mod->filter = $modinfo->get_icon_url()->get_param('filtericon');
             $mod->purpose = plugin_supports('mod', $modinfo->modname, FEATURE_MOD_PURPOSE);
             $mod->url = $modinfo->url;
             $mod->coursename = $modinfo->get_course()->fullname;
