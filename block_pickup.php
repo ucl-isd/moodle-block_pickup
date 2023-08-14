@@ -117,10 +117,22 @@ class block_pickup extends block_base {
      * @return array courses.
      */
     public function fetch_recent_courses() : array {
-        global $USER;
+        global $USER, $DB;
 
         // Get recent courses.
-        $courserecords = course_get_recent_courses($USER->id, 3);
+         $sql = "SELECT c.id, c.fullname, c.visible, cc.name as catname
+                  FROM {user_lastaccess} ula
+                  JOIN {course} c ON c.id = ula.courseid
+                  JOIN {course_categories} cc ON cc.id = c.category
+                 WHERE ula.userid = :userid
+              ORDER BY ula.timeaccess DESC
+                 LIMIT 3";
+
+        $params = array(
+            'userid' => $USER->id,
+        );
+
+        $courserecords = $DB->get_records_sql($sql, $params);
 
         if (!count($courserecords)) {
             return array();
@@ -134,7 +146,8 @@ class block_pickup extends block_base {
             $course = new stdClass();
             $course->fullname = $cr->fullname;
             $course->viewurl = new moodle_url('/course/view.php', array('id' => $cr->id));
-            $course->coursecategory = core_course_category::get($cr->category)->get_formatted_name();
+            $course->visible = $cr->visible;
+            $course->coursecategory = $cr->catname;
 
             /* Progress. */
             if ($percentage = progress::get_course_progress_percentage($cr, $USER->id)) {
