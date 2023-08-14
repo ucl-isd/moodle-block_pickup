@@ -18,6 +18,7 @@
     {
 
         "purpose": "content",
+        "filter": "1",
         "icon": "https://moodle.org/blocks/stats_registry/pix/courses.svg",
         "url": "https://moodle.com/",
         "type": "file",
@@ -30,7 +31,7 @@
 <div class="pickup-card media bg-white p-3 position-relative">
 
     <div class="activityiconcontainer {{purpose}} mr-2">
-        <img class="icon activityicon" src="{{icon}}" alt="">
+        <img class="activityicon {{^filter}} nofilter {{/filter}}" src="{{icon}}" alt="">
     </div>
 
     <div class="media-body">
