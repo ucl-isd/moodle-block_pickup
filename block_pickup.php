@@ -121,12 +121,12 @@ class block_pickup extends block_base {
 
         // Get recent courses.
          $sql = "SELECT c.id, c.fullname, c.visible, cc.name as catname
-                  FROM {user_lastaccess} ula
-                  JOIN {course} c ON c.id = ula.courseid
-                  JOIN {course_categories} cc ON cc.id = c.category
-                 WHERE ula.userid = :userid
-              ORDER BY ula.timeaccess DESC
-                 LIMIT 3";
+                   FROM {user_lastaccess} ula
+                   JOIN {course} c ON c.id = ula.courseid
+                   JOIN {course_categories} cc ON cc.id = c.category
+                  WHERE ula.userid = :userid
+               ORDER BY ula.timeaccess DESC
+                  LIMIT 3";
 
         $params = array(
             'userid' => $USER->id,
