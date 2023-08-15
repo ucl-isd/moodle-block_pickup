@@ -32,8 +32,11 @@
     <div class="d-flex flex-column h-100">
 
         {{! Image. }}
-        <div class="bg-cover transition mb-2 bg-light"
+        <div class="bg-cover p-2 mb-2 bg-light"
             style='background-image: url("{{{courseimage}}}"); height: 140px;'>
+            {{^visible}}
+                <span class="badge badge-pill badge-warning">{{#str}} hiddenfromstudents {{/str}}</span><br>
+            {{/visible}}
         </div>
 
         {{! Name & Catagory. }}
