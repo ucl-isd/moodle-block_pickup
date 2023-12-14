@@ -87,7 +87,7 @@ class block_pickup extends block_base {
         $modrecords = helper::get_recent_items(4);
 
         if (!count($modrecords)) {
-            return array();
+            return [];
         }
 
         /* Template data for mustache. */
@@ -128,14 +128,14 @@ class block_pickup extends block_base {
                ORDER BY ula.timeaccess DESC
                   LIMIT 4";
 
-        $params = array(
+        $params = [
             'userid' => $USER->id,
-        );
+        ];
 
         $courserecords = $DB->get_records_sql($sql, $params);
 
         if (!count($courserecords)) {
-            return array();
+            return [];
         }
 
         /* Template data for mustache. */
@@ -145,7 +145,7 @@ class block_pickup extends block_base {
             /* Template per course. */
             $course = new stdClass();
             $course->fullname = $cr->fullname;
-            $course->viewurl = new moodle_url('/course/view.php', array('id' => $cr->id));
+            $course->viewurl = new moodle_url('/course/view.php', ['id' => $cr->id]);
             $course->visible = $cr->visible;
             $course->coursecategory = $cr->catname;
 
