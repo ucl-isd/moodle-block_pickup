@@ -28,18 +28,15 @@
     }
 }}
 
-<div class="pickup-card media bg-white p-3 position-relative">
+<div class="pickup-card bg-white p-3 position-relative h-100">
 
-    <div class="activityiconcontainer {{purpose}} mr-2">
-        <img class="activityicon {{^filter}} nofilter {{/filter}}" src="{{icon}}" alt="">
+    <div class="activityiconcontainer {{purpose}}">
+        <img class="activityicon {{^filter}} nofilter {{/filter}}" src="{{icon}}" alt="{{type}}">
     </div>
 
-    <div class="media-body">
-        <div class="small text-capitalize">{{type}}</div>
-        <div class="activityname">
-            <a href="{{url}}" class="stretched-link font-weight-bold">{{name}}</a>
-        </div>
-        <div class="small line-clamp-2">{{coursename}}</div>
+    <div class="activityname">
+        <a href="{{url}}" class="stretched-link font-weight-bold line-clamp-3">{{name}}</a>
     </div>
+    <div class="small line-clamp-2">{{coursename}}</div>
 
 </div>

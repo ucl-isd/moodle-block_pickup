@@ -126,7 +126,7 @@ class block_pickup extends block_base {
                    JOIN {course_categories} cc ON cc.id = c.category
                   WHERE ula.userid = :userid
                ORDER BY ula.timeaccess DESC
-                  LIMIT 3";
+                  LIMIT 4";
 
         $params = array(
             'userid' => $USER->id,
