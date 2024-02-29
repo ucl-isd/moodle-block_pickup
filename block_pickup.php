@@ -71,8 +71,7 @@ class block_pickup extends block_base {
         /* If we have content. */
         if ($coursecount || $modcount) {
             $this->content->text = $OUTPUT->render_from_template('block_pickup/content', $template);
-        }
-        else {
+        } else {
             /* No content, nice message. */
             $this->content->text = $OUTPUT->render_from_template('block_pickup/nocontent', $template);
         }
