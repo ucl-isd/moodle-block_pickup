@@ -51,7 +51,7 @@ class block_pickup extends block_base {
      *
      * @return stdClass - the block content.
      */
-    public function get_content() : stdClass {
+    public function get_content(): stdClass {
         global $OUTPUT;
 
         if ($this->content !== null) {
@@ -85,7 +85,7 @@ class block_pickup extends block_base {
      *
      * @return array mods.
      */
-    public function fetch_recent_mods() : array {
+    public function fetch_recent_mods(): array {
         /* Get the recent items using recentlyaccesseditems block's helper class */
         $modrecords = helper::get_recent_items(4);
 
@@ -119,7 +119,7 @@ class block_pickup extends block_base {
      *
      * @return array courses.
      */
-    public function fetch_recent_courses() : array {
+    public function fetch_recent_courses(): array {
         global $USER, $DB;
 
         // Get recent courses.
@@ -171,7 +171,7 @@ class block_pickup extends block_base {
      *
      * @return array of the pages where the block can be added.
      */
-    public function applicable_formats() : array {
+    public function applicable_formats(): array {
         return [
             'admin' => false,
             'site-index' => false,
@@ -186,7 +186,7 @@ class block_pickup extends block_base {
      *
      * @return bool.
      */
-    public function instance_allow_multiple() : bool {
+    public function instance_allow_multiple(): bool {
         return false;
     }
 
@@ -195,7 +195,7 @@ class block_pickup extends block_base {
      *
      * @return bool.
      */
-    public function has_config() : bool {
+    public function has_config(): bool {
         return false;
     }
 }
