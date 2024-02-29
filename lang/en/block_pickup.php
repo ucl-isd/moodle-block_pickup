@@ -29,4 +29,5 @@ $string['privacy:metadata'] = 'Pick up where you left off does not store any per
 
 $string['blocktitle'] = 'Block title';
 $string['viewmycourses'] = 'View all your courses';
+$string['nocontent'] = 'Courses and activites you visit will be shown here.';
 

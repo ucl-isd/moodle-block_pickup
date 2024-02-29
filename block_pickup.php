@@ -68,10 +68,13 @@ class block_pickup extends block_base {
         $template->mods = $this->fetch_recent_mods();
         $modcount = count($template->mods);
 
-        /* Only output if we have content. */
+        /* If we have content. */
         if ($coursecount || $modcount) {
-            /* Render from template. */
             $this->content->text = $OUTPUT->render_from_template('block_pickup/content', $template);
+        }
+        else {
+            /* No content, nice message. */
+            $this->content->text = $OUTPUT->render_from_template('block_pickup/nocontent', $template);
         }
 
         return $this->content;
