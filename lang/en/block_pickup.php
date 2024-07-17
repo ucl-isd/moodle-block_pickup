@@ -15,19 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Languages configuration for the block_pickup plugin.
+ * Language strings.
  *
  * @package   block_pickup
  * @copyright    2023 Stuart Lamour
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['blocktitle'] = 'Block title';
+$string['nocontent'] = 'Courses and activites you visit will be shown here.';
 $string['pluginname'] = 'Pick up where you left off';
 $string['pickup:addinstance'] = 'Add pick up where you left off block';
 $string['pickup:myaddinstance'] = 'Add pick up where you left off block';
 $string['privacy:metadata'] = 'Pick up where you left off does not store any personal data.';
-
-$string['blocktitle'] = 'Block title';
 $string['viewmycourses'] = 'View all your courses';
-$string['nocontent'] = 'Courses and activites you visit will be shown here.';
+
 
