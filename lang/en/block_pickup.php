@@ -24,8 +24,8 @@
 
 $string['blocktitle'] = 'Block title';
 $string['nocontent'] = 'Courses and activites you visit will be shown here.';
-$string['pluginname'] = 'Pick up where you left off';
 $string['pickup:addinstance'] = 'Add pick up where you left off block';
+$string['pluginname'] = 'Pick up where you left off';
 $string['pickup:myaddinstance'] = 'Add pick up where you left off block';
 $string['privacy:metadata'] = 'Pick up where you left off does not store any personal data.';
 $string['viewmycourses'] = 'View all your courses';
