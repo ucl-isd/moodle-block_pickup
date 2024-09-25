@@ -161,7 +161,6 @@ class block_pickup extends block_base {
                 }
             }
 
-
             /* Course image. */
             $course->courseimage = course_summary_exporter::get_course_image($cr);
             $template->courses[] = $course;
