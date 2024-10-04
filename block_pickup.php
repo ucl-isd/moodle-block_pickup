@@ -122,7 +122,7 @@ class block_pickup extends block_base {
         global $USER, $DB;
 
         // Get recent courses.
-         $sql = "SELECT c.id, c.fullname, c.visible, cc.name as catname
+         $sql = "SELECT c.id, c.fullname, c.visible, c.enablecompletion, cc.name as catname
                    FROM {user_lastaccess} ula
                    JOIN {course} c ON c.id = ula.courseid
                    JOIN {course_categories} cc ON cc.id = c.category
@@ -152,9 +152,12 @@ class block_pickup extends block_base {
             $course->coursecategory = $cr->catname;
 
             /* Progress. */
-            if ($percentage = progress::get_course_progress_percentage($cr, $USER->id)) {
-                $percentage = floor($percentage);
-                $course->progress = $percentage;
+            if ($cr->enablecompletion) {
+                $course->progressenabled = true;
+                $course->progress = 0; // Default.
+                if ($percentage = progress::get_course_progress_percentage($cr, $USER->id)) {
+                    $course->progress = floor($percentage);
+                }
             }
 
             /* Course image. */

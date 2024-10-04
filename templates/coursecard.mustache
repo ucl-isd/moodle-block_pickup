@@ -29,7 +29,7 @@
 {{! Coursecard. }}
 <div class="pickup-card h-100 bg-white position-relative pb-3">
     {{^visible}}
-        <div class="position-absolute p-1" style="top:0;right: 0; z-index: 666;">
+        <div class="position-absolute p-1" style="top:0; right: 0; z-index: 666;">
             <span class="badge badge-pill badge-warning border border-dark" >{{#str}} hiddenfromstudents {{/str}}</span>
         </div>
     {{/visible}}
@@ -44,26 +44,24 @@
         </div>
 
         {{! Name & Catagory. }}
-        <div class="pickup-card-details pt-2 px-3">
+        <div class="pickup-card-details px-3 pt-3">
             <a href="{{viewurl}}" class="stretched-link font-weight-bold line-clamp-3">{{fullname}}</a>
             <div class="line-clamp-1 text-muted"><small>{{coursecategory}}</small></div>
         </div>
 
+        {{! Progress. }}
+        {{#progressenabled}}
         <div class="dashboard-card-meta mt-auto px-3">
-
-            {{! Progress. }}
-            <div class="{{^progress}} invisible {{/progress}}">
-                <small>Progress: {{progress}}%</small>
-                <div class="progress ">
-                    <div class="progress-bar bg-success" role="progressbar"
-                    aria-label="{{#str}} progress {{/str}}"
-                    aria-valuenow="{{progress}}"
-                    style="width: {{progress}}%"
-                    aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
+            <small>{{#str}} progress {{/str}}: {{progress}}%</small>
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar"
+                aria-label="{{#str}} progress {{/str}}"
+                aria-valuenow="{{progress}}"
+                style="width: {{progress}}%"
+                aria-valuemin="0"
+                aria-valuemax="100"></div>
             </div>
         </div>
-
+        {{/progressenabled}}
     </div>
 </div>
