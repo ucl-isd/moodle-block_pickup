@@ -154,10 +154,9 @@ class block_pickup extends block_base {
             /* Progress. */
             if ($cr->enablecompletion) {
                 $course->progressenabled = true;
-                $course->progress = "0"; // Default.
+                $course->progress = 0; // Default.
                 if ($percentage = progress::get_course_progress_percentage($cr, $USER->id)) {
-                    $percentage = floor($percentage);
-                    $course->progress = $percentage;
+                    $course->progress = floor($percentage);
                 }
             }
 
