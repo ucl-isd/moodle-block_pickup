@@ -57,9 +57,10 @@
   <div class="container p-0 px-md-3">
 
     {{! Header and link. }}
-    <div class="pb-3">
-      <h1>{{#str}} pluginname, block_pickup {{/str}}</h1>
-      <div class="nav" id="block-pickup-tab" role="tablist">
+    <div class="d-flex pb-3">
+      <h1 style="line-height: 1;">{{#str}} pluginname, block_pickup {{/str}}</h1>
+
+      <div class="ml-auto nav" id="block-pickup-tab" role="tablist">
 
         <a class="nav-link transition active"
             id="block-pickup-courses-tab"
@@ -99,8 +100,8 @@
         {{/courses}}
 
           <!-- All courses link. -->
-          <div class="col-12 text-right py-2">
-            <a href="{{{ config.wwwroot }}}/my/courses.php" class="all-courses h5 mb-3">
+          <div class="col-12 text-right pb-2">
+            <a href="{{{ config.wwwroot }}}/my/courses.php" class="all-courses h5">
             <i class="fa-solid fa-circle-arrow-right mr-2" aria-hidden="true"></i>{{#str}} viewmycourses, block_pickup {{/str}}</a>
           </div>
         </div>
