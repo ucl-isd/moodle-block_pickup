@@ -57,14 +57,16 @@
   <div class="container p-0 px-md-3">
 
     {{! Header and link. }}
-    <div class="d-flex pb-3">
-      <h1 style="line-height: 1;">{{#str}} pluginname, block_pickup {{/str}}</h1>
+    <div class="d-flex align-items-center pb-3">
+      <div>
+        <h1 style="line-height: 1;">{{#str}} pluginname, block_pickup {{/str}}</h1>
+      </div>
 
-      <div class="ml-auto nav" id="block-pickup-tab" role="tablist">
+      <div class="ms-auto nav" id="block-pickup-tab" role="tablist">
 
         <a class="nav-link transition active"
             id="block-pickup-courses-tab"
-            data-toggle="pill"
+          data-bs-toggle="pill"
             href="#block-pickup-courses"
             role="tab"
             aria-controls="block-pickup-courses"
@@ -74,7 +76,7 @@
 
         <a class="nav-link transition"
             id="block-pickup-activites-tab"
-            data-toggle="pill"
+          data-bs-toggle="pill"
             href="#block-pickup-activites"
             role="tab"
             aria-controls="block-pickup-activites"
@@ -100,9 +102,9 @@
         {{/courses}}
 
           <!-- All courses link. -->
-          <div class="col-12 text-right mt-2">
-            <a href="{{{ config.wwwroot }}}/my/courses.php" class="all-courses h5">
-            <i class="fa-solid fa-circle-arrow-right mr-2" aria-hidden="true"></i>{{#str}} viewmycourses, block_pickup {{/str}}</a>
+          <div class="col-12 text-end mt-2">
+            <a href="{{{ config.wwwroot }}}/my/courses.php" class="all-courses h6 link-primary">
+            <i class="fa-solid fa-circle-arrow-right me-2" aria-hidden="true"></i>{{#str}} viewmycourses, block_pickup {{/str}}</a>
           </div>
         </div>
 
@@ -126,4 +128,3 @@
   </div>
   {{! /container. }}
 </div>
-
