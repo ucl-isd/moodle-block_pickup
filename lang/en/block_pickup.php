@@ -29,5 +29,3 @@ $string['pickup:myaddinstance'] = 'Add pick up where you left off block';
 $string['pluginname'] = 'Pick up where you left off';
 $string['privacy:metadata'] = 'Pick up where you left off does not store any personal data.';
 $string['viewmycourses'] = 'View all your courses';
-
-
